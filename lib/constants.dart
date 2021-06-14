@@ -10,7 +10,7 @@ const kBodyTextColor = Color(0xFF4B4B4B);
 
 // Text Style
 const kHeadingTextStyle = TextStyle(
-  fontSize: 22,
+  fontSize: 35,
   fontWeight: FontWeight.w600,
 );
 

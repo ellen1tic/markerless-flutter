@@ -1,6 +1,5 @@
 import 'package:app2/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:app2/homescreen.dart';
 
 void main() {
@@ -9,6 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(color: kBackgroundColor),
         ),
       ),
-      home: Homescreen(),
+      home: HomeScreen(),
     );
   }
 }

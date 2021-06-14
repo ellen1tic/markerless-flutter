@@ -1,5 +1,3 @@
-import 'package:app2/bottomnav.dart';
-import 'package:app2/main.dart';
 import 'package:flutter/material.dart';
 import 'package:app2/constants.dart';
 import 'package:app2/jenisalatmusik.dart';
@@ -14,7 +12,7 @@ class Body extends StatelessWidget {
       child: Column(
         children: <Widget>[
           //buat background body
-          Homescreen(),
+          HomeScreen(),
           SizedBox(height: kDefaultPadding / 6),
           Expanded(
             child: Stack(

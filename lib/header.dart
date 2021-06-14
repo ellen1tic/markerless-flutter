@@ -8,7 +8,11 @@ class Header extends StatelessWidget {
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
-        padding: EdgeInsets.only(left: 40, top: 50, right: 20),
+        padding: EdgeInsets.only(
+          top: 40,
+          left: 20,
+          right: 20,
+        ),
         height: 300,
         width: double.infinity,
         decoration: BoxDecoration(
@@ -24,21 +28,23 @@ class Header extends StatelessWidget {
         ),
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Align(
               // alignment: Alignment.topRight,
               // child: SvgPicture.asset("assets/icons/logobmr.svg"),
               child: SvgPicture.asset("assets/icons/logobmr3.svg"),
             ),
-            SizedBox(height: 20),
+            // SizedBox(height: 20),
             Expanded(
               child: Stack(
                 children: <Widget>[
-                  Positioned(
-                    top: 40,
+                  Container(
+                    margin: EdgeInsets.only(top: 40),
                     child: Text(
-                      "Alat Musik Tradisional Melayu",
+                      "Alat Musik \n Tradisional Melayu",
+                      softWrap: true,
+                      textAlign: TextAlign.center,
                       style: kHeadingTextStyle.copyWith(
                         color: Colors.white,
                       ),
