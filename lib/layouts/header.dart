@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:app2/constants/Warna.dart';
 import 'package:app2/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,17 +16,13 @@ class Header extends StatelessWidget {
           left: 20,
           right: 20,
         ),
-        height: 300,
+        height: MediaQuery.of(context).size.height / 3,
         width: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            colors: [
-              Color(0xFF3383CD),
-              // Color(0xFF81D4FA),
-              Color(0xFF1A237E),
-            ],
+            colors: Warna.gradientHeader,
           ),
         ),
         child: Column(
@@ -31,9 +30,14 @@ class Header extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Align(
-              // alignment: Alignment.topRight,
               // child: SvgPicture.asset("assets/icons/logobmr.svg"),
-              child: SvgPicture.asset("assets/icons/logobmr3.svg"),
+              child: SvgPicture.asset(
+                "assets/icons/logobmr3.svg",
+                alignment: Alignment.center,
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.height / 4,
+              ),
+              alignment: Alignment.bottomCenter,
             ),
             // SizedBox(height: 20),
             Expanded(
@@ -41,12 +45,15 @@ class Header extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     margin: EdgeInsets.only(top: 40),
-                    child: Text(
-                      "Alat Musik \n Tradisional Melayu",
-                      softWrap: true,
-                      textAlign: TextAlign.center,
-                      style: kHeadingTextStyle.copyWith(
-                        color: Colors.white,
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        "Alat Musik \n Tradisional Melayu",
+                        softWrap: true,
+                        textAlign: TextAlign.center,
+                        style: kHeadingTextStyle.copyWith(
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -77,6 +84,7 @@ class Header extends StatelessWidget {
 class MyClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
+    log(size.toString());
     var path = Path();
     path.lineTo(0, size.height - 80);
     path.quadraticBezierTo(

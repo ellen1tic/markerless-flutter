@@ -1,3 +1,4 @@
+import 'package:app2/constants/Warna.dart';
 import 'package:app2/constants/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -25,10 +26,11 @@ class _AlatMusikState extends State<AlatMusik> {
             height: 150, //mengatur panjang bagian atas box
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: cardColor,
+              color: Warna.biruLangit,
               boxShadow: [kDefaultShadow],
             ),
             //menambahkan box diatas imagebox 1
+            // box putih untuk label
             child: Container(
               margin: EdgeInsets.only(right: 160),
               decoration: BoxDecoration(
@@ -56,11 +58,13 @@ class _AlatMusikState extends State<AlatMusik> {
           Positioned(
             bottom: 0,
             left: 0,
+            height: 150,
             child: SizedBox(
-              height: 136, //tinggi teks dan
+              height: 100, //tinggi teks dan
               width: size.width - 200,
               //bagian teks dan tombol detail
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(16), //padding vutton detail
@@ -72,22 +76,24 @@ class _AlatMusikState extends State<AlatMusik> {
                           fontFamily: 'Poppins'),
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: kDefaultPadding * 1,
-                      vertical: kDefaultPadding / 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ), //background
-                    child: Text(
-                      "Detail",
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: kBackgroundColor,
-                          fontFamily: 'Poppins'),
-                      // Theme.of(context).textTheme.button,
+                  Center(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: kDefaultPadding * 1,
+                        vertical: kDefaultPadding / 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: kPrimaryColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ), //background
+                      child: Text(
+                        "Detail",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: kBackgroundColor,
+                            fontFamily: 'Poppins'),
+                        // Theme.of(context).textTheme.button,
+                      ),
                     ),
                   ),
                 ],
