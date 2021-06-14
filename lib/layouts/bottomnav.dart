@@ -1,9 +1,8 @@
-import 'package:app2/homescreen.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/svg.dart';
 
 class BottomNav extends StatefulWidget {
-  int currentIndex = 0;
+  final int currentIndex;
   final changeIndexParent;
 
   BottomNav({Key key, this.currentIndex, this.changeIndexParent});
@@ -13,10 +12,6 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNav> {
-  final tabs = <Widget>[
-    HomeScreen(),
-    Text("Hai"),
-  ];
   @override
   Widget build(BuildContext context) {
     // padding: const EdgeInsets.all(12.0),

@@ -1,4 +1,4 @@
-import 'package:app2/bottomnav.dart';
+import 'package:app2/layouts/bottomnav.dart';
 import 'package:app2/pages/HomePage.dart';
 import 'package:flutter/material.dart';
 

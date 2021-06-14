@@ -1,4 +1,4 @@
-import 'package:app2/constants.dart';
+import 'package:app2/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:app2/homescreen.dart';
 

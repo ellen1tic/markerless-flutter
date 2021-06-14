@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../header.dart';
-import '../jenisalatmusik.dart';
+import '../layouts/header.dart';
+import '../widgets/CardAlatMusik.dart';
 
 class HomePage extends StatefulWidget {
   @override
