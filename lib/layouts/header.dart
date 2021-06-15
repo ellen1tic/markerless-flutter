@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app2/constants/Teks.dart';
 import 'package:app2/constants/Warna.dart';
 import 'package:app2/constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +19,7 @@ class Header extends StatelessWidget {
         ),
         height: MediaQuery.of(context).size.height / 3,
         width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: Warna.gradientHeader,
-          ),
-        ),
+        decoration: Warna.gradientHeader,
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,9 +46,7 @@ class Header extends StatelessWidget {
                         "Alat Musik \n Tradisional Melayu",
                         softWrap: true,
                         textAlign: TextAlign.center,
-                        style: kHeadingTextStyle.copyWith(
-                          color: Colors.white,
-                        ),
+                        style: Teks.headingStyle.copyWith(color: Colors.white),
                       ),
                     ),
                   ),

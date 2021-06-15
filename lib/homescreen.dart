@@ -1,5 +1,7 @@
 import 'package:app2/layouts/bottomnav.dart';
 import 'package:app2/pages/HomePage.dart';
+import 'package:app2/pages/AboutPage.dart';
+import 'package:app2/pages/PanduanPage.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,12 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tabs = <Widget>[
     HomePage(),
-    Center(
-      child: Text("Panduan"),
-    ),
-    Center(
-      child: Text("Tentang"),
-    ),
+    PanduanPage(),
+    AboutPage(),
   ];
 
   @override
