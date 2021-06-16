@@ -1,8 +1,15 @@
 import 'package:app2/constants/constants.dart';
+import 'package:app2/pages/OnBoarding.dart';
 import 'package:flutter/material.dart';
 import 'package:app2/homescreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+int isViewed;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  isViewed = prefs.getInt("onBoard");
   runApp(MyApp());
 }
 
@@ -21,7 +28,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(color: kBackgroundColor),
         ),
       ),
-      home: HomeScreen(),
+      home: isViewed != 0 ? OnBoardingScreen() : HomeScreen(),
     );
   }
 }

@@ -44,17 +44,57 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                     );
                     break;
-
                   case ConnectionState.none:
-                    return Text("Tidak Ada Data");
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Tidak ada data ...",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
                     break;
                   case ConnectionState.done:
-                    print(snapshot.data[0]);
-                    // return Text("Hai");
-                    return AboutContainer(snapshot.data[0]);
+                    if (snapshot.hasData) {
+                      return AboutContainer(snapshot.data[0]);
+                    } else {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Tidak ada data ...",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
                     break;
                   default:
-                    return Text("Tidak ada data ...");
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Tidak ada data ...",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
                 }
               },
             ),
