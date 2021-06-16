@@ -1,13 +1,22 @@
+import 'dart:developer';
+
 import 'package:app2/constants/Warna.dart';
+import 'package:app2/database/model/AboutModel.dart';
+import 'package:app2/database/services/firebase_service.dart';
 import 'package:app2/widgets/HeaderPage.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatefulWidget {
+  About about = new About();
+  AboutPage({Key key, this.about});
   @override
-  _AboutPageState createState() => _AboutPageState();
+  _AboutPageState createState() => _AboutPageState(about);
 }
 
 class _AboutPageState extends State<AboutPage> {
+  final _reference = DB.ref;
   String URL =
       "https://lh3.googleusercontent.com/kHFOZ87n1nbxwDgtGLR9rRHsCooB9Dg4QT3O3lEXSqIbBGifZ5tIdYZnmTb4zJyPuPpGEHXm7UZxSYyMuQ=w1080-h608-p-no-v0";
   String text =
@@ -15,6 +24,11 @@ class _AboutPageState extends State<AboutPage> {
 
   String address = "Jl Garuda Gg Pelita No 15";
   String telp = "0877 - 1606 - 2764";
+
+  About about;
+
+  _AboutPageState(this.about);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,47 +41,100 @@ class _AboutPageState extends State<AboutPage> {
         ),
         Flexible(
           flex: 3,
-          child: Container(
-            padding: EdgeInsets.only(left: 16, right: 16),
-            // color: Colors.red,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 16, top: 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image(
-                            image: NetworkImage(URL),
-                          ),
+          child: new FirebaseAnimatedList(
+            query: _reference.child("about"),
+            itemBuilder: (BuildContext context, DataSnapshot ds,
+                Animation<double> animation, int index) {
+              print(ds.value);
+              // return Text(ds.value["img"].toString());
+              return Container(
+                margin: EdgeInsets.only(top: 16),
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.only(left: 16, right: 16),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom: 16),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image(
+                          image: NetworkImage(ds.value['img']),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 16),
-                        child: Text(
-                          text,
-                          style: TextStyle(fontSize: 18),
-                          textAlign: TextAlign.justify,
-                        ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 16),
+                      child: Text(
+                        ds.value["ket"].toString(),
+                        style: TextStyle(fontSize: 18),
+                        textAlign: TextAlign.justify,
                       ),
-                      CardAbout(
-                        icon: Icons.pin_drop,
-                        text: address,
-                      ),
-                      CardAbout(
-                        icon: Icons.phone,
-                        text: telp,
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                    ),
+                    CardAbout(
+                      icon: Icons.pin_drop,
+                      text: ds.value["address"],
+                    ),
+                    CardAbout(
+                      icon: Icons.phone,
+                      text: ds.value["telp"],
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ),
+        // Flexible(
+        //   flex: 3,
+        //   child: Container(
+        //     padding: EdgeInsets.only(left: 16, right: 16),
+        //     // color: Colors.red,
+        //     width: MediaQuery.of(context).size.width,
+        //     child: Column(
+        //       children: [
+        //         Expanded(
+        //           child: ListView(
+        //             children: [
+        //               Container(
+        //                 margin: EdgeInsets.only(bottom: 16, top: 0),
+        //                 child: ClipRRect(
+        //                   borderRadius: BorderRadius.circular(10),
+        //                   child: Image(
+        //                     image: NetworkImage(URL),
+        //                   ),
+        //                 ),
+        //               ),
+        //               Container(
+        //                 margin: EdgeInsets.only(bottom: 16),
+        //                 child: Text(
+        //                   text,
+        //                   style: TextStyle(fontSize: 18),
+        //                   textAlign: TextAlign.justify,
+        //                 ),
+        //               ),
+        //               CardAbout(
+        //                 icon: Icons.pin_drop,
+        //                 text: address,
+        //               ),
+        //               CardAbout(
+        //                 icon: Icons.phone,
+        //                 text: telp,
+        //               ),
+        //               ElevatedButton(
+        //                 onPressed: () async {
+        //                   DB db = new DB();
+        //                   var data = await db.getDataAbout("about");
+        //                   print(data);
+        //                 },
+        //                 child: Text("Buton"),
+        //               ),
+        //             ],
+        //           ),
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

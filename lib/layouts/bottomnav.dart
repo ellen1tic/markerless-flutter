@@ -1,5 +1,5 @@
 // import 'package:app2/constants/Warna.dart';
-import 'dart:developer';
+// import 'dart:developer';
 
 import 'package:app2/constants/Warna.dart';
 import 'package:flutter/material.dart';
