@@ -79,9 +79,9 @@ class MyClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     log(size.toString());
     var path = Path();
-    path.lineTo(0, size.height - 80);
+    path.lineTo(0, size.height - 40);
     path.quadraticBezierTo(
-        size.width / 2, size.height, size.width, size.height - 80);
+        size.width / 2, size.height + 40, size.width, size.height - 40);
     path.lineTo(size.width, 0);
     path.close();
     return path;

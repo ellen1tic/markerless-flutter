@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 
 abstract class FirebaseDB {
   Future getData(String collection);
+  Future getDataByForeignKey(String collection, String field, int where);
 }
 
 class DB implements FirebaseDB {
@@ -15,5 +16,12 @@ class DB implements FirebaseDB {
     var data = await ref.child(collection).once();
     return data.value;
     // return ;
+  }
+
+  Future getDataByForeignKey(String collection, String field, int where) async {
+    var data =
+        await ref.child(collection).orderByChild(field).equalTo(where).once();
+
+    return data.value;
   }
 }

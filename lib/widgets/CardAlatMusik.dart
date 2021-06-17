@@ -88,7 +88,7 @@ class _AlatMusikState extends State<AlatMusik> {
                       child: Text(
                         widget.name,
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 24,
                             color: kTextColor,
                             fontFamily: 'Poppins'),
                       ),
