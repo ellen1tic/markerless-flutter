@@ -1,5 +1,5 @@
 import 'package:app2/layouts/bottomnav.dart';
-import 'package:app2/pages/HomePage.dart';
+import 'package:app2/pages/home/HomePage.dart';
 import 'package:app2/pages/AboutPage.dart';
 import 'package:app2/pages/PanduanPage.dart';
 import 'package:flutter/material.dart';
