@@ -108,157 +108,166 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           itemBuilder: (context, index) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(screens[index].img),
-                Container(
-                  height: 10.0,
-                  child: ListView.builder(
-                    itemCount: screens.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, i) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 4),
-                            width: currentIndex == i ? 24 : 8,
-                            height: 8,
-                            decoration: BoxDecoration(
-                              color: currentIndex == i
-                                  ? Colors.lightBlue
-                                  : Colors.grey,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
+                Flexible(
+                  flex: 2,
+                  child: Image.asset(screens[index].img),
                 ),
-                Column(
-                  children: [
-                    Text(
-                      screens[index].text,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.black,
-                      ),
-                    ),
-                    Divider(),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 24),
-                      child: Text(
-                        screens[index].desc,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black.withOpacity(0.6),
+                Flexible(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 10.0,
+                        child: ListView.builder(
+                          itemCount: screens.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (_, i) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 4),
+                                  width: currentIndex == i ? 24 : 8,
+                                  height: 8,
+                                  decoration: BoxDecoration(
+                                    color: currentIndex == i
+                                        ? Colors.lightBlue
+                                        : Colors.grey,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ),
-                    ),
-                  ],
+                      Text(
+                        screens[index].text,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w800,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Divider(),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          screens[index].desc,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.6),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        if (index != 0) {
-                          _pageController.previousPage(
+                Flexible(
+                  flex: 2,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          if (index != 0) {
+                            _pageController.previousPage(
+                              duration: Duration(microseconds: 300),
+                              curve: Curves.bounceInOut,
+                            );
+                          }
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            // horizontal: 32,
+                            vertical: 12,
+                          ),
+                          width: MediaQuery.of(context).size.width / 2.5,
+                          decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 8),
+                                child: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.black.withOpacity(0.3),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 8),
+                                child: Text(
+                                  "Back",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black.withOpacity(0.3),
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        highlightColor: Colors.lightBlue,
+                        onTap: () async {
+                          if (index == screens.length - 1) {
+                            await _storeOnBoardInfo();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()),
+                            );
+                          }
+                          _pageController.nextPage(
                             duration: Duration(microseconds: 300),
                             curve: Curves.bounceInOut,
                           );
-                        }
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          // horizontal: 32,
-                          vertical: 12,
-                        ),
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 8),
-                              child: Icon(
-                                Icons.arrow_back,
-                                color: Colors.black.withOpacity(0.3),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 8),
-                              child: Text(
-                                "Back",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.black.withOpacity(0.3),
-                                  fontSize: 16,
+                        },
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            // horizontal: 32,
+                            vertical: 12,
+                          ),
+                          width: MediaQuery.of(context).size.width / 2.5,
+                          decoration: BoxDecoration(
+                              color: Warna.biru,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 8),
+                                child: Text(
+                                  "Next",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      highlightColor: Colors.lightBlue,
-                      onTap: () async {
-                        if (index == screens.length - 1) {
-                          await _storeOnBoardInfo();
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomeScreen()),
-                          );
-                        }
-                        _pageController.nextPage(
-                          duration: Duration(microseconds: 300),
-                          curve: Curves.bounceInOut,
-                        );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          // horizontal: 32,
-                          vertical: 12,
-                        ),
-                        width: MediaQuery.of(context).size.width / 2.5,
-                        decoration: BoxDecoration(
-                            color: Warna.biru,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 8),
-                              child: Text(
-                                "Next",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 8),
+                                child: Icon(
+                                  Icons.arrow_forward,
                                   color: Colors.white,
-                                  fontSize: 16,
                                 ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 8),
-                              child: Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             );

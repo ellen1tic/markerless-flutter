@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:app2/database/firebase_service.dart';
 import 'package:app2/widgets/HeaderDetail.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TutorialPage extends StatefulWidget {
   final int instrumentId;
@@ -81,7 +84,6 @@ class _TutorialPageState extends State<TutorialPage> {
                             if (snapshot.data[0] == null) {
                               List data = [];
                               snapshot.data.forEach((k, v) => data.add(v));
-                              print(data);
                               return containerTutorial(data);
                             } else {
                               return containerTutorial(snapshot.data);
@@ -142,15 +144,41 @@ Container containerTutorial(data) {
       children: [
         for (var item in data)
           Container(
+            margin: EdgeInsets.only(bottom: 16),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  item["desc"],
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                Container(
+                  margin: EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    item["desc"],
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
+                Container(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: YoutubePlayerBuilder(
+                      player: YoutubePlayer(
+                        controller: YoutubePlayerController(
+                          initialVideoId: YoutubePlayer.convertUrlToId(
+                            item['link'],
+                          ),
+                          flags: YoutubePlayerFlags(
+                            autoPlay: false,
+                          ),
+                        ),
+                      ),
+                      builder: (context, player) {
+                        return player;
+                      },
+                    ),
+                  ),
+                )
               ],
             ),
           ),

@@ -16,11 +16,19 @@ class DetailInstrument extends StatefulWidget {
 
 class _DetailInstrumentState extends State<DetailInstrument> {
   _informasiRoute() {
-    print("Information");
+    final snackBar = SnackBar(
+      content: Text("Tampilan Informasi"),
+      duration: Duration(milliseconds: 2000),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   _ar3DRoute() {
-    print("AR 3D");
+    final snackBar = SnackBar(
+      content: Text("Menu AR 3D"),
+      duration: Duration(milliseconds: 2000),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   _tutorialRoute() {
