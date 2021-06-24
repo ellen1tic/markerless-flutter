@@ -1,3 +1,4 @@
+import 'package:app2/pages/Test.dart';
 import 'package:app2/pages/home/TutorialPage.dart';
 import 'package:app2/widgets/CustomCard.dart';
 import 'package:app2/widgets/HeaderDetail.dart';
@@ -24,11 +25,17 @@ class _DetailInstrumentState extends State<DetailInstrument> {
   }
 
   _ar3DRoute() {
-    final snackBar = SnackBar(
-      content: Text("Menu AR 3D"),
-      duration: Duration(milliseconds: 2000),
+    // final snackBar = SnackBar(
+    //   content: Text("Menu AR 3D"),
+    //   duration: Duration(milliseconds: 2000),
+    // );
+    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (builder) => Test(),
+      ),
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   _tutorialRoute() {
