@@ -11,6 +11,7 @@ class _PanduanPageState extends State<PanduanPage> {
   final db = new DB();
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: <Widget>[
         Flexible(
@@ -57,7 +58,7 @@ class _PanduanPageState extends State<PanduanPage> {
                   case ConnectionState.done:
                     // print(snapshot.data);
                     if (snapshot.hasData) {
-                      return panduanContainer(snapshot.data);
+                      return panduanContainer(snapshot.data, size);
                     } else {
                       return Center(
                         child: Column(
@@ -101,7 +102,7 @@ class _PanduanPageState extends State<PanduanPage> {
   }
 }
 
-Container panduanContainer(data) {
+Container panduanContainer(data, size) {
   return Container(
     margin: EdgeInsets.only(top: 16),
     padding: EdgeInsets.only(left: 16, right: 16),
@@ -112,20 +113,28 @@ Container panduanContainer(data) {
         for (var item in data)
           Container(
             margin: EdgeInsets.only(bottom: 16),
+            // width: size.width / 2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       item["no"].toString() + ".",
                       style: TextStyle(fontSize: 18),
                     ),
-                    Text(
-                      item["title"],
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    Container(
+                      width: size.width / 1.2,
+                      child: Text(
+                        item["title"],
+                        softWrap: true,
+                        maxLines: 3,
+                        style: TextStyle(
+                          fontSize: 18,
+                          // fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
