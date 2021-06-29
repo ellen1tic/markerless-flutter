@@ -163,6 +163,7 @@ class CardAbout extends StatelessWidget {
         horizontal: 24,
       ),
       margin: EdgeInsets.only(bottom: 16),
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -196,8 +197,11 @@ class CardAbout extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.only(left: 16),
+            width: MediaQuery.of(context).size.width / 1.5,
+            // padding: EdgeInsets.all(20),
             child: Text(
               text,
+              softWrap: true,
               style: TextStyle(
                 fontSize: 18,
               ),
