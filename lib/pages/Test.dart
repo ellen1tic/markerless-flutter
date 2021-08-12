@@ -1,7 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 
 class Test extends StatefulWidget {
+  final String instrumentName;
+  final String instrumentType;
+
+  Test({Key key, this.instrumentName, this.instrumentType});
   @override
   _TestState createState() => _TestState();
 }
@@ -28,7 +34,7 @@ class _TestState extends State<Test> {
               onUnityCreated: onUnityCreated,
               onUnityMessage: onUnityMessage,
               onUnitySceneLoaded: onUnitySceneLoaded,
-              fullscreen: true,
+              fullscreen: false,
             ),
           ],
         ),
@@ -53,6 +59,10 @@ class _TestState extends State<Test> {
   // Callback that connects the created controller to the unity controller
   void onUnityCreated(controller) {
     this._unityWidgetController = controller;
+    String SceneName =
+        widget.instrumentName.split(" ")[0] + widget.instrumentType;
+    log("Scene Name : " + SceneName);
+    controller.postMessage('Wrapper', 'Move', SceneName);
   }
 
   // Communication from Unity when new scene is loaded to Flutter

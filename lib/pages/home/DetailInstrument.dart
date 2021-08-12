@@ -1,4 +1,6 @@
 import 'package:app2/pages/Test.dart';
+import 'package:app2/pages/home/ARModel.dart';
+import 'package:app2/pages/home/Information.dart';
 import 'package:app2/pages/home/TutorialPage.dart';
 import 'package:app2/widgets/CustomCard.dart';
 import 'package:app2/widgets/HeaderDetail.dart';
@@ -17,11 +19,20 @@ class DetailInstrument extends StatefulWidget {
 
 class _DetailInstrumentState extends State<DetailInstrument> {
   _informasiRoute() {
-    final snackBar = SnackBar(
-      content: Text("Tampilan Informasi"),
-      duration: Duration(milliseconds: 2000),
+    // final snackBar = SnackBar(
+    //   content: Text("Tampilan Informasi"),
+    //   duration: Duration(milliseconds: 2000),
+    // );
+    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (builder) => Information(
+          instrumentId: widget.instrumentId,
+          instrumentName: widget.instrumentName,
+        ),
+      ),
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   _ar3DRoute() {
@@ -33,7 +44,10 @@ class _DetailInstrumentState extends State<DetailInstrument> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (builder) => Test(),
+        builder: (builder) => ARModel(
+          instrumentId: widget.instrumentId,
+          instrumentName: widget.instrumentName,
+        ),
       ),
     );
   }
