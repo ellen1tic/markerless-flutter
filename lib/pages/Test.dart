@@ -25,19 +25,20 @@ class _TestState extends State<Test> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        key: _scaffoldKey,
-        body: Stack(
-          children: <Widget>[
-            UnityWidget(
-              onUnityCreated: onUnityCreated,
-              onUnityMessage: onUnityMessage,
-              onUnitySceneLoaded: onUnitySceneLoaded,
-              fullscreen: false,
-            ),
-          ],
-        ),
+    return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        title: Text("AR " + widget.instrumentName),
+      ),
+      body: Stack(
+        children: <Widget>[
+          UnityWidget(
+            onUnityCreated: onUnityCreated,
+            onUnityMessage: onUnityMessage,
+            onUnitySceneLoaded: onUnitySceneLoaded,
+            fullscreen: false,
+          ),
+        ],
       ),
     );
   }
@@ -57,12 +58,15 @@ class _TestState extends State<Test> {
   }
 
   // Callback that connects the created controller to the unity controller
-  void onUnityCreated(controller) {
+  void onUnityCreated(controller) async {
     this._unityWidgetController = controller;
-    String SceneName =
-        widget.instrumentName.split(" ")[0] + widget.instrumentType;
-    log("Scene Name : " + SceneName);
-    controller.postMessage('Wrapper', 'Move', SceneName);
+    final bool isReady = await this._unityWidgetController.isReady();
+    if (isReady) {
+      String SceneName =
+          widget.instrumentName.split(" ")[0] + widget.instrumentType;
+      log("Scene Name : " + SceneName);
+      controller.postMessage('Wrapper', 'Move', SceneName);
+    }
   }
 
   // Communication from Unity when new scene is loaded to Flutter

@@ -33,7 +33,10 @@ class _InformationState extends State<Information> {
             children: [
               FutureBuilder(
                 future: db.getDataByForeignKey(
-                    "information", "fk_instrument", widget.instrumentId),
+                    "information",
+                    "fk_instrument",
+                    widget
+                        .instrumentId), //Future getDataByForeignKey(String collection, String field, int where)
                 builder: (context, snapshot) {
                   print(snapshot.data);
                   switch (snapshot.connectionState) {
@@ -151,7 +154,10 @@ Container containerInfo(data, db, size) {
                 ),
                 FutureBuilder(
                   future: db.getDataByForeignKey(
-                      "img_information", "fk_information", item["id"]),
+                      "img_information",
+                      "fk_information",
+                      item[
+                          "id"]), //mengambil pada fieldd fk_information kemudian ambil id nya
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
                       case ConnectionState.waiting:
@@ -234,6 +240,7 @@ Container containerInfo(data, db, size) {
 }
 
 Container containerImage(data, size) {
+  //nampilin banyak gambar
   return Container(
     width: double.infinity,
     // height: 400,
