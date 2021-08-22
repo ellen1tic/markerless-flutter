@@ -24,22 +24,39 @@ class _TestState extends State<Test> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _unityWidgetController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        title: Text("AR " + widget.instrumentName),
+    return WillPopScope(
+      child: Scaffold(
+        key: _scaffoldKey,
+        appBar: AppBar(
+          title: Text("AR " + widget.instrumentName),
+        ),
+        body: Stack(
+          children: <Widget>[
+            Container(
+              child: Text("Hai"),
+              height: 300,
+            ),
+            UnityWidget(
+              onUnityCreated: onUnityCreated,
+              onUnityMessage: onUnityMessage,
+              onUnitySceneLoaded: onUnitySceneLoaded,
+              fullscreen: false,
+            ),
+          ],
+        ),
       ),
-      body: Stack(
-        children: <Widget>[
-          UnityWidget(
-            onUnityCreated: onUnityCreated,
-            onUnityMessage: onUnityMessage,
-            onUnitySceneLoaded: onUnitySceneLoaded,
-            fullscreen: false,
-          ),
-        ],
-      ),
+      onWillPop: () async {
+        this._unityWidgetController.pause();
+        Navigator.of(context).pop();
+        return true;
+      },
     );
   }
 
@@ -62,11 +79,15 @@ class _TestState extends State<Test> {
     this._unityWidgetController = controller;
     final bool isReady = await this._unityWidgetController.isReady();
     if (isReady) {
-      String SceneName =
+      bool isPaused = await this._unityWidgetController.isPaused();
+      if (isPaused) {
+        await this._unityWidgetController.resume();
+      }
+      String sceneName =
           widget.instrumentName.split(" ")[0] + widget.instrumentType;
-      log("Scene Name : " + SceneName);
-      controller.postMessage('Wrapper', 'Move', SceneName);
+      controller.postMessage('Wrapper', 'Move', sceneName);
     }
+    log("\n\n\n " + isReady.toString() + "\n\n\n");
   }
 
   // Communication from Unity when new scene is loaded to Flutter
@@ -74,5 +95,9 @@ class _TestState extends State<Test> {
     print('Received scene loaded from unity: ${sceneInfo.name}');
     print(
         'Received scene loaded from unity buildIndex: ${sceneInfo.buildIndex}');
+  }
+
+  void onUnityUnloaded() {
+    this._unityWidgetController.pause();
   }
 }
