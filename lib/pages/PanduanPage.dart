@@ -142,11 +142,18 @@ Container panduanContainer(data, size) {
                 Container(
                   margin: EdgeInsets.only(top: 8),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image(
-                      image: NetworkImage(item['img']),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(10),
+                      child: item["img"] == null || item["img"] == ""
+                          ? Text("")
+                          : Image(
+                              image: NetworkImage(item['img']),
+                            )
+
+                      //  child: Image(
+                      // //   // image: NetworkImage(item['img']),
+                      //  ),
+
+                      ),
                 )
               ],
             ),

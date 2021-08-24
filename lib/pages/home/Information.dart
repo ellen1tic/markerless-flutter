@@ -202,7 +202,7 @@ Container containerInfo(data, db, size) {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Tidak ada data ...",
+                                  "",
                                   style: TextStyle(
                                     fontSize: 24,
                                     fontWeight: FontWeight.bold,
@@ -219,7 +219,7 @@ Container containerInfo(data, db, size) {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Tidak ada data ...",
+                                "",
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,

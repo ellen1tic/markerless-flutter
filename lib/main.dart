@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(color: kBackgroundColor),
         ),
       ),
-      home: isViewed != 0 ? OnBoardingScreen() : HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

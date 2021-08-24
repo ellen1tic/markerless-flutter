@@ -1,4 +1,4 @@
-package com.ellenta.markerless
+package com.ellenta.ta
 
 import io.flutter.embedding.android.FlutterActivity
 

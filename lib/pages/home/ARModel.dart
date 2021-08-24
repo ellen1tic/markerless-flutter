@@ -34,7 +34,7 @@ class _ARModelState extends State<ARModel> {
           Flexible(
             flex: 1,
             child: HeaderDetail(
-              headerTitle: "Model 3D\n" + widget.instrumentName,
+              headerTitle: "Model 3 Dimensi (AR)\n" + widget.instrumentName,
             ),
           ),
           Flexible(

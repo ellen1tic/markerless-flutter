@@ -85,11 +85,11 @@ class _DetailInstrumentState extends State<DetailInstrument> {
                   routes: _informasiRoute,
                 ),
                 CustomCard(
-                  text: "Animasi 3D (AR)",
+                  text: "Model 3 Dimensi (AR)",
                   routes: _ar3DRoute,
                 ),
                 CustomCard(
-                  text: "Tutorial",
+                  text: "Tutorial Video",
                   routes: _tutorialRoute,
                 ),
               ],

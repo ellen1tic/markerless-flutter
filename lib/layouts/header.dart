@@ -27,7 +27,7 @@ class Header extends StatelessWidget {
             Align(
               // child: SvgPicture.asset("assets/icons/logobmr.svg"),
               child: SvgPicture.asset(
-                "assets/icons/logobmr3.svg",
+                "assets/images/logobmr.svg",
                 alignment: Alignment.center,
                 fit: BoxFit.cover,
                 width: MediaQuery.of(context).size.height / 4,
