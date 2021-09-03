@@ -1,4 +1,4 @@
-package com.ellenta.ta
+package com.ellenta.pa
 
 import io.flutter.embedding.android.FlutterActivity
 

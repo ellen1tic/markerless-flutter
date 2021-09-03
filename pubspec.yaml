@@ -37,6 +37,7 @@ dependencies:
   shared_preferences: ^2.0.6
   youtube_player_flutter: ^7.0.0+7
   flutter_unity_widget: ^4.2.0
+  change_app_package_name: ^1.0.0
 
 dev_dependencies:
   flutter_test:

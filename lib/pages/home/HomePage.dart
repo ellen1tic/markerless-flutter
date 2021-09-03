@@ -100,15 +100,15 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Container containerAlatMusik(data) {
+Container containerAlatMusik(instruments) {
   return Container(
     child: Column(
       children: [
-        for (var item in data)
+        for (var instrument in instruments)
           AlatMusik(
-            id: item['id'],
-            img: item['img'],
-            name: item['name'],
+            id: instrument['id'],
+            img: instrument['img'],
+            name: instrument['name'],
           ),
       ],
     ),

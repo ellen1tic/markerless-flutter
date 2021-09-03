@@ -19,11 +19,6 @@ class DetailInstrument extends StatefulWidget {
 
 class _DetailInstrumentState extends State<DetailInstrument> {
   _informasiRoute() {
-    // final snackBar = SnackBar(
-    //   content: Text("Tampilan Informasi"),
-    //   duration: Duration(milliseconds: 2000),
-    // );
-    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -36,11 +31,6 @@ class _DetailInstrumentState extends State<DetailInstrument> {
   }
 
   _ar3DRoute() {
-    // final snackBar = SnackBar(
-    //   content: Text("Menu AR 3D"),
-    //   duration: Duration(milliseconds: 2000),
-    // );
-    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
     Navigator.push(
       context,
       MaterialPageRoute(

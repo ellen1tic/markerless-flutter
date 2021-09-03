@@ -85,6 +85,7 @@ class _TestState extends State<Test> {
       }
       String sceneName =
           widget.instrumentName.split(" ")[0] + widget.instrumentType;
+
       controller.postMessage('Wrapper', 'Move', sceneName);
     }
     log("\n\n\n " + isReady.toString() + "\n\n\n");
